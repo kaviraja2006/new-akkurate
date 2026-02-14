@@ -10,6 +10,9 @@ export default function Navbar() {
         </div>
 
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+          <Link href="#" className="hover:text-blue-600 transition-colors">Home</Link>
+          <Link href="#" className="hover:text-blue-600 transition-colors">About</Link>
+
           <div className="relative group">
             <button className="hover:text-blue-600 transition-colors flex items-center gap-1 py-4">
               Service
@@ -28,12 +31,9 @@ export default function Navbar() {
             </div>
           </div>
 
-          <Link href="#" className="hover:text-blue-600 transition-colors">Pages</Link>
-
-          <Link href="#" className="hover:text-blue-600 transition-colors">Shop</Link>
-
-          <Link href="#" className="hover:text-blue-600 transition-colors">Blog</Link>
+          <Link href="#" className="hover:text-blue-600 transition-colors">Projects</Link>
           <Link href="#" className="hover:text-blue-600 transition-colors">Contact</Link>
+          <Link href="#" className="hover:text-blue-600 transition-colors">Blog</Link>
         </div>
 
         <button className="bg-slate-900 text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-slate-800 transition-colors">

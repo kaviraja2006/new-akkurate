@@ -69,10 +69,8 @@ export default function Footer() {
                     {/* Column 1: Brand & Subscribe */}
                     <RevealOnScroll variant="scale" delay={500} className="space-y-6">
                         <div className="flex items-center gap-2 mb-4">
-                            <div className="w-6 h-6 bg-blue-600 rounded flex items-center justify-center skew-x-[-10deg]">
-                                <span className="text-white font-bold text-xs skew-x-[10deg]">SS</span>
-                            </div>
-                            <span className="text-lg font-bold">Sasstech</span>
+                            <img src="https://res.cloudinary.com/ddnxhn442/image/upload/v1769847944/akkurate_g55qvc.png" alt="Akkurate Logo" className="h-8 w-auto bg-white rounded-md p-0.5" />
+                            <span className="text-lg font-bold">Akkurate</span>
                         </div>
 
                         <div className="flex gap-2">
@@ -126,7 +124,7 @@ export default function Footer() {
                 {/* Bottom Bar */}
                 <RevealOnScroll variant="scale" delay={900}>
                     <div className="flex flex-col md:flex-row justify-between items-center text-[10px] text-slate-500">
-                        <p>© 2024 <span className="text-blue-500">Webnextgio</span> - IT Services. All rights reserved.</p>
+                        <p>© 2024 <span className="text-blue-500">Akkurate</span> - IT Services. All rights reserved.</p>
 
                         <div className="flex gap-6 mt-4 md:mt-0">
                             <Link href="#" className="hover:text-white flex items-center gap-1">Facebook</Link>
