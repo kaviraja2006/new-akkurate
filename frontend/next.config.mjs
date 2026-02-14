@@ -7,11 +7,13 @@ const __dirname = path.dirname(__filename);
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   /* config options here */
+  output: 'export',
   reactCompiler: false,
   turbopack: {
     root: __dirname,
   },
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
