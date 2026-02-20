@@ -25,6 +25,17 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+html,
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
 @keyframes moveDiagonal {
 
   0%,
@@ -72,6 +83,58 @@ body {
   animation: zoomIn 1.5s ease-out forwards;
 }
 
+.animate-left-right {
+  animation: leftRight 1.4s ease-in-out infinite;
+}
+
+@keyframes leftRight {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(26px);
+  }
+}
+
 .pause-on-hover:hover {
   animation-play-state: paused;
+}
+
+@keyframes jump {
+
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -10px;
+  }
+}
+
+.animate-jump-hover {
+  display: inline-block;
+  /* Ensure transform works if it wasn't a flex item */
+}
+
+.animate-jump-hover:hover {
+  animation: jump 0.6s ease-in-out;
+}
+
+@keyframes frontBackMedium {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(26px, -6px, 0) scale(1.08);
+  }
+}
+
+.animate-front-back-medium {
+  animation: frontBackMedium 1.6s ease-in-out infinite;
+  will-change: transform;
 }

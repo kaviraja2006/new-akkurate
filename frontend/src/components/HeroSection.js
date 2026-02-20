@@ -2,7 +2,15 @@ import Image from 'next/image';
 
 export default function HeroSection() {
     return (
-        <div className="bg-slate-50 pt-10 pb-20 relative overflow-hidden">
+        <div
+            className="bg-slate-50 pt-10 pb-20 relative overflow-hidden"
+            style={{
+                backgroundImage: "url('https://res.cloudinary.com/ddnxhn442/image/upload/v1771497199/background_grid_akkurate_mgkejo.png')",
+                backgroundSize: '100% auto',
+                backgroundPosition: 'top center',
+                backgroundRepeat: 'no-repeat'
+            }}
+        >
             {/* Background Gradients/Glows could be added here */}
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
@@ -50,7 +58,7 @@ export default function HeroSection() {
                         {/* Main Image Container */}
                         <div className="relative z-10 aspect-[4/5] bg-slate-200 rounded-3xl overflow-hidden shadow-2xl animate-zoom-in">
                             <img
-                                src="https://res.cloudinary.com/ddnxhn442/image/upload/v1771015434/juliusbusch-man-6554120_fp1oeh.jpg"
+                                src="https://res.cloudinary.com/ddnxhn442/image/upload/v1771503287/manager_of_akkurate_by7gh4.png"
                                 alt="Strategic IT Solutions"
                                 className="w-full h-full object-cover"
                             />
@@ -61,7 +69,7 @@ export default function HeroSection() {
                         {/* Floating Elements mimicking the design */}
 
                         {/* Trustpilot Badge */}
-                        <div className="absolute top-10 -right-6 md:-right-12 bg-white p-3 rounded-xl shadow-lg z-20 flex items-center gap-3 animate-bounce-slow">
+                        <div className="absolute top-8 -right-6 md:-right-12 bg-white px-3 py-4 rounded-xl shadow-lg z-20 flex items-center gap-3 animate-bounce-slow">
                             <div className="bg-green-500 text-white text-[10px] px-1.5 py-0.5 rounded">4.9 ★</div>
                             <div>
                                 <p className="text-xs font-bold text-slate-900">Trust pilot</p>

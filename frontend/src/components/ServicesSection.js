@@ -80,13 +80,16 @@ export default function ServicesSection() {
                             <p className="text-xs text-red-500 font-semibold mb-2">Excellent Performance</p>
                             <h3 className="text-2xl font-bold text-slate-900 leading-tight w-2/3">IT Management Service</h3>
                         </div>
-                        <div className="self-start mt-4">
+                        <div className="self-start mt-4 relative z-10">
                             <button className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-900 shadow-sm group-hover:bg-blue-600 group-hover:text-white transition-colors">
                                 ↗
                             </button>
                         </div>
-                        {/* Decoration Image Mockup - Bottom Right */}
-                        <div className="absolute bottom-0 right-0 w-32 h-24 bg-gradient-to-tl from-red-200 to-transparent opacity-50 rounded-tl-full"></div>
+                        <img
+                            src="https://res.cloudinary.com/ddnxhn442/image/upload/v1771505206/it_management_qya5ca.png"
+                            alt="IT management service"
+                            className="absolute bottom-0 right-0 w-full h-auto object-contain"
+                        />
                     </RevealOnScroll>
 
                     {/* Card 2 (Tall Center) */}
@@ -95,20 +98,16 @@ export default function ServicesSection() {
                             <p className="text-xs text-blue-500 font-semibold mb-2">Excellent Performance</p>
                             <h3 className="text-2xl font-bold text-slate-900 leading-tight w-2/3">Website Design & Development</h3>
                         </div>
-                        <div className="self-start mt-4 mb-20">
+                        <div className="self-start mt-4 mb-20 relative z-10">
                             <button className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-sm hover:bg-blue-700 transition-colors">
                                 ↗
                             </button>
                         </div>
-                        {/* Decoration Image Mockup - Centered */}
-                        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-48 h-64 bg-white shadow-lg rounded-xl border border-slate-100 p-4">
-                            <div className="w-full h-8 bg-blue-100 rounded mb-2"></div>
-                            <div className="w-full h-24 bg-slate-100 rounded mb-2"></div>
-                            <div className="flex gap-2">
-                                <div className="w-1/2 h-20 bg-slate-50 rounded"></div>
-                                <div className="w-1/2 h-20 bg-slate-50 rounded"></div>
-                            </div>
-                        </div>
+                        <img
+                            src="https://res.cloudinary.com/ddnxhn442/image/upload/v1771504731/website_design_and_development_ia196g.png"
+                            alt="Website design and development"
+                            className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[440px] h-auto drop-shadow-xl"
+                        />
                     </RevealOnScroll>
 
                     {/* Card 3 */}
@@ -117,59 +116,66 @@ export default function ServicesSection() {
                             <p className="text-xs text-blue-500 font-semibold mb-2">Excellent Performance</p>
                             <h3 className="text-2xl font-bold text-slate-900 leading-tight w-2/3">CRM Software Solution</h3>
                         </div>
-                        <div className="self-start mt-4">
+                        <div className="self-start mt-4 relative z-10">
                             <button className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-900 shadow-sm group-hover:bg-blue-600 group-hover:text-white transition-colors">
                                 ↗
                             </button>
                         </div>
-                        {/* Decoration Image Mockup */}
-                        <div className="absolute bottom-4 right-4 bg-white p-3 rounded-lg shadow-md w-24">
-                            <div className="flex items-end gap-1 h-12">
-                                <div className="w-2 bg-blue-200 h-4"></div>
-                                <div className="w-2 bg-blue-300 h-8"></div>
-                                <div className="w-2 bg-blue-500 h-6"></div>
-                                <div className="w-2 bg-blue-600 h-10"></div>
-                            </div>
-                        </div>
+                        <img
+                            src="https://res.cloudinary.com/ddnxhn442/image/upload/v1771514487/offerimg4_mowu5x.png"
+                            alt="CRM software solution"
+                            className="absolute bottom-0 right-0 w-full h-auto object-contain"
+                        />
                     </RevealOnScroll>
 
                     {/* Card 4 */}
-                    <RevealOnScroll variant="scale" delay={600} className="bg-red-50 rounded-3xl p-8 relative overflow-hidden group hover:shadow-xl transition-shadow h-80 flex flex-col justify-between">
-                        <div>
+                    <RevealOnScroll
+                        variant="scale"
+                        delay={600}
+                        className="bg-transparent rounded-3xl p-8 relative overflow-hidden group hover:shadow-xl transition-shadow h-80 flex flex-col justify-between"
+                        style={{
+                            backgroundImage: "url('https://res.cloudinary.com/ddnxhn442/image/upload/v1771504629/that_div_xscqwy.png')",
+                            backgroundSize: "100% 100%",
+                            backgroundPosition: "center",
+                            backgroundRepeat: "no-repeat"
+                        }}
+                    >
+                        <div className="relative z-10">
                             <p className="text-xs text-red-500 font-semibold mb-2">Excellent Performance</p>
                             <h3 className="text-2xl font-bold text-slate-900 leading-tight w-2/3">WowCommerce System Development</h3>
                         </div>
-                        <div className="self-start mt-4">
+                        <img
+                            src="https://res.cloudinary.com/ddnxhn442/image/upload/v1771513606/offerimg2_kigqcu.png"
+                            alt="WowCommerce background"
+                            className="absolute bottom-0 right-0 w-full h-auto object-contain"
+                        />
+                        <div className="self-start mt-4 relative z-10">
                             <button className="w-10 h-10 bg-red-400 text-white rounded-full flex items-center justify-center shadow-sm group-hover:bg-red-500 transition-colors">
                                 ↗
                             </button>
                         </div>
-                        {/* Decoration Image Mockup */}
-                        <div className="absolute bottom-4 right-4 w-32 h-20 bg-white border border-slate-200 rounded-lg shadow-sm rotate-[-10deg]"></div>
                     </RevealOnScroll>
 
                     {/* Card 5 */}
-                    <RevealOnScroll variant="scale" delay={700} className="bg-green-50 rounded-3xl p-8 relative overflow-hidden group hover:shadow-xl transition-shadow h-80 flex flex-col justify-between">
+                    <RevealOnScroll
+                        variant="scale"
+                        delay={700}
+                        className="bg-transparent rounded-3xl p-8 relative overflow-hidden group hover:shadow-xl transition-shadow h-80 flex flex-col justify-between"
+                    >
                         <div>
                             <p className="text-xs text-green-500 font-semibold mb-2">Excellent Performance</p>
                             <h3 className="text-2xl font-bold text-slate-900 leading-tight w-2/3">WowCommerce System Development</h3>
                         </div>
-                        <div className="self-start mt-4">
+                        <div className="self-start mt-4 relative z-10">
                             <button className="w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center shadow-sm group-hover:bg-green-600 transition-colors">
                                 ↗
                             </button>
                         </div>
-                        {/* Decoration Image Mockup */}
-                        <div className="absolute bottom-0 right-0 w-40 h-32">
-                            {/* Connecting lines mock */}
-                            <svg width="100%" height="100%" viewBox="0 0 100 100">
-                                <circle cx="20" cy="80" r="5" fill="#22c55e" />
-                                <circle cx="50" cy="60" r="5" fill="#22c55e" />
-                                <circle cx="80" cy="80" r="5" fill="#22c55e" />
-                                <line x1="20" y1="80" x2="50" y2="60" stroke="#bbf7d0" strokeWidth="2" />
-                                <line x1="80" y1="80" x2="50" y2="60" stroke="#bbf7d0" strokeWidth="2" />
-                            </svg>
-                        </div>
+                        <img
+                            src="https://res.cloudinary.com/ddnxhn442/image/upload/v1771504629/that_div_xscqwy.png"
+                            alt="WowCommerce background"
+                            className="absolute bottom-0 right-0 w-full h-auto object-contain"
+                        />
                     </RevealOnScroll>
 
                 </div>

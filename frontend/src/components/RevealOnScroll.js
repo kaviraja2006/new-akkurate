@@ -34,12 +34,19 @@ export default function RevealOnScroll({ children, className = "", delay = 0, va
         fade: isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20",
         scale: isVisible ? "opacity-100 scale-100" : "opacity-0 scale-50",
     };
+    const durations = {
+        fade: 320,
+        scale: 1000,
+    };
 
     return (
         <div
             ref={ref}
-            className={`${className} transition-all duration-1000 ease-out transform ${variants[variant] || variants.fade}`}
-            style={{ transitionDelay: `${delay}ms` }}
+            className={`${className} transition-all ease-out transform ${variants[variant] || variants.fade}`}
+            style={{
+                transitionDelay: `${delay}ms`,
+                transitionDuration: `${durations[variant] || durations.fade}ms`,
+            }}
         >
             {children}
         </div>

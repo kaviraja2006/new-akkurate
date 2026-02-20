@@ -20,7 +20,7 @@ export default function LogoScrollingBand() {
                 {repeatedLogos.map((logo, index) => (
                     <div
                         key={index}
-                        className="mx-8 md:mx-12 relative h-12 w-32 md:h-16 md:w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100"
+                        className="mx-8 md:mx-12 relative h-12 w-32 md:h-16 md:w-40 flex items-center justify-center"
                     >
                         <Image
                             src={logo}

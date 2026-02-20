@@ -1,159 +1,195 @@
-"use client";
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import RevealOnScroll from "./RevealOnScroll";
+﻿"use client";
+import { useEffect, useRef } from "react";
 
 export default function ShowcaseSection() {
-    const targetRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: targetRef,
-    });
-
-    // Maps the vertical scroll progress (0 to 1) to horizontal translation (1% to -95%)
-    // Adjust -95% based on the number of items and their width to ensure the last item is fully visible
-    const x = useTransform(scrollYProgress, [0, 1], ["1%", "-75%"]);
+    const trackRef = useRef(null);
+    const stepRef = useRef(0);
+    const animRef = useRef({ rafId: 0, timeoutId: 0, paused: false, running: false, start: null });
 
     const projects = [
-        {
-            id: 1,
-            title: "Cloud Computing System",
-            category: "Excellent Performance",
-            bg: "bg-[#2e2b5b]", // Dark Purple
-            accent: "bg-green-400", // Green Circle
-            imagePlaceholder: "Webfolio Mockup",
-            imageBg: "bg-slate-900",
-        },
-        {
-            id: 2,
-            title: "Mobile Application Development",
-            category: "Excellent Performance",
-            bg: "bg-[#8b5cf6]", // Lighter Purple
-            accent: "bg-white", // White circle or UI elements
-            imagePlaceholder: "App Interface",
-            imageBg: "bg-white",
-            fullCard: true // Special layout for the middle card with UI elements
-        },
-        {
-            id: 3,
-            title: "Cloud Computing System",
-            category: "Excellent Performance",
-            bg: "bg-[#2e2b5b]", // Dark Purple
-            accent: "bg-green-400",
-            imagePlaceholder: "Webfolio Mockup",
-            imageBg: "bg-slate-900",
-        },
-        {
-            id: 4,
-            title: "Mobile Application Development",
-            category: "Excellent Performance",
-            bg: "bg-[#059669]", // Green
-            accent: "bg-white",
-            imagePlaceholder: "Phone Mockup",
-            imageBg: "bg-slate-900",
-        },
-        // Adding more dummy projects to make the scroll longer and more obvious
-        {
-            id: 5,
-            title: "Data Analytics Platform",
-            category: "Data Science",
-            bg: "bg-[#2e2b5b]",
-            accent: "bg-purple-400",
-            imagePlaceholder: "Data Dash",
-            imageBg: "bg-slate-900",
-        },
-        {
-            id: 6,
-            title: "E-Commerce Solution",
-            category: "Business Growth",
-            bg: "bg-[#8b5cf6]",
-            accent: "bg-pink-400",
-            imagePlaceholder: "Shop UI",
-            imageBg: "bg-white",
-        }
+        { id: 1, title: "Mobile Application Development", category: "Excellent Performance", bg: "bg-[#0c6b4e]" },
+        { id: 2, title: "Cloud Computing System", category: "Excellent Performance", bg: "bg-[#2e2b5b]" },
+        { id: 3, title: "Mobile Application Development", category: "Excellent Performance", bg: "bg-[#7c3aed]" },
+        { id: 4, title: "Cloud Computing System", category: "Excellent Performance", bg: "bg-[#2e2b5b]" },
+        { id: 5, title: "Data Analytics Platform", category: "Data Science", bg: "bg-[#0c6b4e]" },
+        { id: 6, title: "E-Commerce Solution", category: "Business Growth", bg: "bg-[#7c3aed]" },
+        { id: 7, title: "SaaS Dashboard", category: "Excellent Performance", bg: "bg-[#2e2b5b]" },
+        { id: 8, title: "Fintech Mobile App", category: "Excellent Performance", bg: "bg-[#0c6b4e]" },
+        { id: 9, title: "Healthcare Portal", category: "Excellent Performance", bg: "bg-[#7c3aed]" },
+        { id: 10, title: "AI Operations Suite", category: "Data Science", bg: "bg-[#2e2b5b]" },
+        { id: 11, title: "Retail POS System", category: "Business Growth", bg: "bg-[#0c6b4e]" },
+        { id: 12, title: "Cloud Migration", category: "Excellent Performance", bg: "bg-[#7c3aed]" },
     ];
 
+    const renderMock = (index) => {
+        if (index % 3 === 0) {
+            return (
+                <div className="w-36 h-56 bg-black/60 rounded-3xl border border-white/10 shadow-2xl flex items-center justify-center">
+                    <div className="w-28 h-44 bg-emerald-900/60 rounded-2xl border border-white/10" />
+                </div>
+            );
+        }
+        if (index % 3 === 1) {
+            return (
+                <div className="w-56 h-36 bg-slate-900/70 rounded-2xl border border-white/10 shadow-2xl flex items-center justify-center">
+                    <span className="text-white/70 font-serif text-2xl italic">Webfolio</span>
+                </div>
+            );
+        }
+        return (
+            <div className="relative w-60 h-40">
+                <div className="absolute left-0 top-6 w-40 h-24 bg-white/15 rounded-2xl -rotate-6 border border-white/20" />
+                <div className="absolute right-0 top-0 w-44 h-28 bg-white/20 rounded-2xl rotate-6 border border-white/30" />
+            </div>
+        );
+    };
+
+    useEffect(() => {
+        const track = trackRef.current;
+        if (!track) return;
+        const anim = animRef.current;
+
+        const measureStep = () => {
+            const cards = track.querySelectorAll("[data-card]");
+            if (cards.length < 2) return;
+            const cardStep = cards[1].offsetLeft - cards[0].offsetLeft;
+            stepRef.current = cardStep * 3;
+        };
+
+        measureStep();
+        window.addEventListener("resize", measureStep);
+        return () => window.removeEventListener("resize", measureStep);
+    }, []);
+
+    useEffect(() => {
+        const track = trackRef.current;
+        if (!track) return;
+        const anim = animRef.current;
+
+        const duration = 1100;
+        const pause = 1000;
+
+        const animateStep = () => {
+            if (anim.paused) {
+                anim.running = false;
+                return;
+            }
+
+            anim.running = true;
+            const step = stepRef.current;
+            if (!step) {
+                anim.timeoutId = window.setTimeout(animateStep, pause);
+                return;
+            }
+
+            const half = track.scrollWidth / 2;
+            const start = track.scrollLeft;
+            let target = start + step;
+
+            if (target >= half) {
+                track.scrollLeft = 0;
+                target = step;
+            }
+
+            const startTime = performance.now();
+            const easeInOut = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+
+            const tick = (now) => {
+                if (anim.paused) {
+                    anim.running = false;
+                    return;
+                }
+
+                const progress = Math.min((now - startTime) / duration, 1);
+                const eased = easeInOut(progress);
+                track.scrollLeft = start + (target - start) * eased;
+
+                if (progress < 1) {
+                    anim.rafId = requestAnimationFrame(tick);
+                } else {
+                    anim.timeoutId = window.setTimeout(animateStep, pause);
+                }
+            };
+
+            anim.rafId = requestAnimationFrame(tick);
+        };
+
+        anim.start = animateStep;
+        anim.timeoutId = window.setTimeout(animateStep, 700);
+
+        return () => {
+            if (anim.rafId) cancelAnimationFrame(anim.rafId);
+            if (anim.timeoutId) clearTimeout(anim.timeoutId);
+        };
+    }, []);
+
+    const loopedProjects = [...projects, ...projects];
+
+    const handlePause = () => {
+        const anim = animRef.current;
+        anim.paused = true;
+        if (anim.rafId) cancelAnimationFrame(anim.rafId);
+        if (anim.timeoutId) clearTimeout(anim.timeoutId);
+        anim.running = false;
+    };
+
+    const handleResume = () => {
+        const anim = animRef.current;
+        anim.paused = false;
+        if (!anim.running && anim.start) {
+            anim.timeoutId = window.setTimeout(() => {
+                if (!anim.paused && anim.start) anim.start();
+            }, 160);
+        }
+    };
+
     return (
-        // The container has a large height (300vh) to allow for vertical scrolling time
-        <section ref={targetRef} className="bg-[#110e2e] relative h-[300vh]">
-
-            {/* Sticky container that stays in view while scrolling */}
-            <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
-
-                <div className="max-w-7xl mx-auto px-6 text-center mb-12 w-full">
-                    <RevealOnScroll>
-                        <div className="inline-block bg-slate-700/50 px-4 py-1.5 rounded-full text-xs font-bold mb-4 border border-slate-600 text-white">
-                            Web Showcase
-                        </div>
-                    </RevealOnScroll>
-                    <RevealOnScroll delay={100}>
-                        <h2 className="text-4xl md:text-5xl font-bold leading-tight text-white">
-                            Comprehensive IT <br />
-                            Solution <br />
-                            Growth & Efficiency
-                        </h2>
-                    </RevealOnScroll>
+        <section className="bg-[#110e2e] py-24">
+            <div className="px-6">
+                <div className="max-w-7xl mx-auto text-center mb-12">
+                    <div className="inline-block bg-slate-700/50 px-4 py-1.5 rounded-full text-xs font-bold mb-4 border border-slate-600 text-white">
+                        Work Showcase
+                    </div>
+                    <h2 className="text-4xl md:text-5xl font-bold leading-tight text-white">
+                        Comprehensive IT Solution
+                        <br />
+                        Growth & Efficiency
+                    </h2>
                 </div>
 
-                {/* Horizontal Scroll Track */}
-                <motion.div style={{ x }} className="flex gap-8 px-12 md:px-24 w-max">
-                    {projects.map((project, index) => (
-                        <div key={index} className={`flex-shrink-0 w-[85vw] md:w-[600px] aspect-[16/9] rounded-3xl p-8 relative overflow-hidden group transition-transform hover:scale-[1.02] ${project.bg} text-white`}>
-
-                            {/* Card Content Top */}
-                            <div className="relative z-10 h-full flex flex-col justify-between">
-                                {/* Mockup Area */}
-                                <div className="absolute inset-x-8 top-8 bottom-0">
-                                    {/* Background Circle/Shape */}
-                                    <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full ${project.accent} opacity-20 blur-3xl`}></div>
-
-                                    {/* Laptop/Device Mockup */}
-                                    <div className="absolute bottom-0 left-0 right-0 h-4/5 bg-slate-900 rounded-t-xl border-t-[12px] border-x-[12px] border-slate-700 p-2 shadow-2xl transform translate-y-20 group-hover:translate-y-10 transition-transform duration-700">
-                                        <div className="w-full h-full bg-slate-800 rounded relative overflow-hidden flex items-center justify-center">
-                                            <span className="font-serif text-4xl italic opacity-50">Webfolio.</span>
-                                        </div>
+                <div
+                    ref={trackRef}
+                    className="overflow-hidden w-screen relative left-1/2 -translate-x-1/2"
+                    onMouseEnter={handlePause}
+                    onMouseLeave={handleResume}
+                >
+                    <div className="flex gap-8 w-max px-6">
+                        {loopedProjects.map((project, index) => (
+                            <div
+                                key={`${project.id}-${index}`}
+                                className="group"
+                                onMouseEnter={handlePause}
+                                onMouseLeave={handleResume}
+                            >
+                                <div
+                                    data-card
+                                    className={`relative aspect-square w-64 md:w-72 lg:w-80 rounded-3xl ${project.bg} overflow-hidden shadow-2xl flex items-center justify-center`}
+                                >
+                                    <button className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white text-slate-900 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                        &rarr;
+                                    </button>
+                                    <div className="absolute inset-0 opacity-30">
+                                        <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-white/10 rounded-full blur-2xl" />
                                     </div>
+                                    {renderMock(index)}
                                 </div>
-
-                                {/* Header Content */}
-                                <div className="relative z-20">
-                                    <p className="text-sm opacity-80 mb-2 uppercase tracking-wider">{project.category}</p>
-                                    <h3 className="text-2xl font-bold">{project.title}</h3>
+                                <div className="mt-5 text-white">
+                                    <p className="text-sm opacity-80 mb-1">{project.category}</p>
+                                    <h3 className="text-xl font-semibold">{project.title}</h3>
                                 </div>
                             </div>
-
-                            {/* Specific UI for the "Purple" card (Mobile App) */}
-                            {project.fullCard && (
-                                <div className="absolute inset-0 bg-transparent flex flex-col p-8">
-                                    <div className="absolute top-8 right-8 bg-white/20 hover:bg-white/30 backdrop-blur-md rounded-full p-3 transition-colors cursor-pointer">
-                                        <span className="text-white font-bold text-xl">↗</span>
-                                    </div>
-
-                                    {/* UI Mockups floating */}
-                                    <div className="absolute inset-0 flex items-center justify-center z-0">
-                                        <div className="w-64 h-80 bg-white/10 rounded-2xl rotate-[-6deg] backdrop-blur-sm border border-white/20 absolute -left-4"></div>
-                                        <div className="w-64 h-80 bg-white/20 rounded-2xl rotate-[6deg] backdrop-blur-md border border-white/30 flex items-center justify-center relative shadow-2xl">
-                                            <div className="text-center">
-                                                <div className="w-16 h-16 bg-white/30 rounded-full mx-auto mb-4 animate-pulse"></div>
-                                                <div className="w-32 h-3 bg-white/30 rounded mx-auto mb-2"></div>
-                                                <div className="w-24 h-3 bg-white/30 rounded mx-auto"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="relative z-20 mt-auto pointer-events-none">
-                                        <p className="text-sm opacity-80 mb-2 uppercase tracking-wider">{project.category}</p>
-                                        <h3 className="text-2xl font-bold">{project.title}</h3>
-                                    </div>
-                                </div>
-                            )}
-
-                        </div>
-                    ))}
-                </motion.div>
-
-                {/* Scroll Indicator helper */}
-                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/30 text-sm animate-pulse">
-                    Scroll Down to Explore
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

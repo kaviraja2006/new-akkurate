@@ -1,99 +1,89 @@
-import RevealOnScroll from "./RevealOnScroll";
-
 export default function TestimonialsSection() {
-    const testimonials = [
-        {
-            id: 1,
-            name: "Webcly Jhonson",
-            role: "Tang Plan - Ceo and Founder",
-            bg: "bg-white", // Not strictly focused in design
-            img: "man1", // placeholder
-            rating: 5,
-        },
-        {
-            id: 2,
-            name: "James anderson",
-            role: "CEO and Founder",
-            bg: "bg-white",
-            img: "man2",
-            rating: 5,
-            quote: "SassTech hires great people from a widely variety of backgrounds, which simply makes our company stronger, and we couldn't be prouder of that, elevating your optimizing Business Growth.",
-            featured: true
-        },
-        {
-            id: 3,
-            name: "John Doe",
-            role: "Developer - Web Developer",
-            bg: "bg-white",
-            img: "man3",
-            rating: 5,
-            quote: "An amazing experience working with the team.",
-            featured: false
-        }
-    ];
-
     return (
-        <section className="py-24 bg-slate-50 relative overflow-hidden">
-            {/* Background decorative curve */}
-            <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-slate-100 to-transparent -skew-y-3 origin-top-left -z-0"></div>
-
+        <section
+            className="py-24 bg-slate-50 relative overflow-hidden"
+            style={{
+                backgroundImage: "url('https://res.cloudinary.com/ddnxhn442/image/upload/v1771516548/work_showcase_background_etdhdd.png')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat"
+            }}
+        >
             <div className="max-w-7xl mx-auto px-6 relative z-10">
-                <div className="text-center mb-16">
-                    <RevealOnScroll variant="scale" threshold={0.2} rootMargin="0px 0px -100px 0px">
-                        <div className="inline-block bg-slate-200 text-slate-600 px-4 py-1.5 rounded-full text-xs font-bold mb-4">
-                            Work Showcase
-                        </div>
-                    </RevealOnScroll>
-                    <RevealOnScroll variant="scale" delay={100} threshold={0.2} rootMargin="0px 0px -100px 0px">
-                        <h2 className="text-4xl font-bold text-slate-900">
-                            What Our Client Say <br />
-                            About Us
-                        </h2>
-                    </RevealOnScroll>
+                <div className="text-center mb-14">
+                    <div className="inline-block bg-white text-slate-700 px-6 py-2 rounded-full text-xs font-semibold mb-4 shadow-sm">
+                        Work Showcase
+                    </div>
+                    <h2 className="text-4xl md:text-5xl font-bold text-slate-900">
+                        What Our Client Say About Us
+                    </h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-                    {/* Card 1 */}
-                    <RevealOnScroll variant="scale" delay={200} threshold={0.2} rootMargin="0px 0px -100px 0px" className="bg-white rounded-3xl p-8 shadow-lg text-center transform transition hover:-translate-y-2 h-full flex flex-col items-center justify-center">
-                        <div className="w-24 h-24 mx-auto bg-slate-200 rounded-full mb-6 overflow-hidden relative">
-                            {/* Image Placeholder */}
-                            <div className="absolute inset-0 bg-green-500 rounded-full flex items-center justify-center text-white text-3xl font-bold">W</div>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                    <div className="bg-white rounded-[2.5rem] p-8 shadow-lg text-center h-full flex flex-col items-center justify-between lg:col-span-3">
+                        <div className="w-full max-w-[250px] mx-auto rounded-2xl overflow-hidden mb-8 bg-slate-100">
+                            <img
+                                src="https://res.cloudinary.com/ddnxhn442/image/upload/v1771518201/image_1_owjbyl.png"
+                                alt="Webcly Jhonson"
+                                className="w-full h-auto object-cover"
+                            />
                         </div>
-                        <h3 className="font-bold text-slate-900">Webcly Jhonson</h3>
-                        <p className="text-xs text-slate-500">Tang Plan - Ceo and Founder</p>
-                    </RevealOnScroll>
+                        <div className="pb-2">
+                            <h3 className="font-bold text-slate-900 text-lg">Webcly jhonson</h3>
+                            <p className="text-sm text-slate-500 mt-1">Tung Phan - Ceo and Founder</p>
+                        </div>
+                    </div>
 
-                    {/* Card 2 - Main Featured */}
-                    <RevealOnScroll variant="scale" delay={400} threshold={0.2} rootMargin="0px 0px -100px 0px" className="bg-white rounded-3xl p-10 shadow-xl text-left md:scale-110 relative z-20 h-full flex flex-col justify-between">
+                    <div className="bg-white rounded-[2.5rem] p-10 shadow-xl text-left h-full flex flex-col justify-between lg:col-span-6">
                         <div>
-                            <div className="flex text-green-500 text-sm mb-4">★★★★★</div>
-                            <p className="text-slate-600 text-sm leading-relaxed mb-8 italic">
-                                "{testimonials[1].quote}"
+                            <div className="flex items-center gap-1 mb-6">
+                                {[1, 2, 3, 4, 5].map((i) => (
+                                    <span
+                                        key={i}
+                                        className="w-5 h-5 bg-emerald-500 text-white rounded-sm flex items-center justify-center text-[10px]"
+                                    >
+                                        {"\u2605"}
+                                    </span>
+                                ))}
+                            </div>
+                            <p className="text-slate-700 text-lg leading-relaxed mb-8">
+                                &quot;SassTech hires great people from a widely variety of backgrounds, which simply makes our company stronger, and we couldn&apos;t be prouder of that. elevating your optimizing Business Growth.&quot;
                             </p>
+                            <div className="border-t border-slate-200" />
                         </div>
 
-                        <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 rounded-full border-2 border-blue-600 p-0.5 shrink-0">
-                                <div className="w-full h-full bg-slate-300 rounded-full overflow-hidden flex items-center justify-center bg-blue-100 text-blue-600 text-xs font-bold">
-                                    JA
+                        <div className="flex items-center gap-4 mt-8">
+                            <div className="w-14 h-14 rounded-full border-2 border-purple-500 p-0.5 shrink-0">
+                                <div className="w-full h-full rounded-full overflow-hidden">
+                                    <img
+                                        src="https://res.cloudinary.com/ddnxhn442/image/upload/v1771518201/image_1_owjbyl.png"
+                                        alt="James anderson"
+                                        className="w-full h-full object-cover"
+                                    />
                                 </div>
                             </div>
                             <div>
-                                <h3 className="font-bold text-slate-900 text-sm">{testimonials[1].name}</h3>
-                                <p className="text-[10px] text-slate-500">{testimonials[1].role}</p>
+                                <h3 className="font-bold text-slate-900 text-base">James anderson</h3>
+                                <p className="text-sm text-slate-500">
+                                    <span className="text-blue-600 font-semibold">CEO</span> and Founder
+                                </p>
                             </div>
                         </div>
-                    </RevealOnScroll>
+                    </div>
 
-                    {/* Card 3 */}
-                    <RevealOnScroll variant="scale" delay={600} threshold={0.2} rootMargin="0px 0px -100px 0px" className="bg-white rounded-3xl p-8 shadow-lg text-center transform transition hover:-translate-y-2 h-full flex flex-col items-center justify-center">
-                        <div className="w-24 h-24 mx-auto bg-slate-200 rounded-full mb-6 overflow-hidden relative">
-                            {/* Image Placeholder */}
-                            <div className="absolute inset-0 bg-red-500 rounded-full flex items-center justify-center text-white text-3xl font-bold">J</div>
+                    <div className="bg-white rounded-[2.5rem] p-8 shadow-lg text-center h-full flex flex-col items-center justify-between lg:col-span-3">
+                        <div className="w-full max-w-[250px] mx-auto rounded-2xl overflow-hidden mb-8 bg-slate-100">
+                            <img
+                                src="https://res.cloudinary.com/ddnxhn442/image/upload/v1771518726/image_2_sn8umd.png"
+                                alt="John Doe"
+                                className="w-full h-auto object-cover"
+                            />
                         </div>
-                        <h3 className="font-bold text-slate-900">John Doe</h3>
-                        <p className="text-xs text-slate-500">Developer - Web Developer</p>
-                    </RevealOnScroll>
+                        <div className="pb-2">
+                            <h3 className="font-bold text-slate-900 text-lg">John Doe</h3>
+                            <p className="text-sm text-slate-500 mt-1">Developer - Web Developer</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

@@ -2,14 +2,14 @@ import Link from 'next/link';
 
 export default function Navbar() {
   return (
-    <nav className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-slate-100 transition-all duration-300">
-      <div className="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto w-full">
+    <nav className="sticky top-0 z-50 w-full bg-white border-b border-slate-100">
+      <div className="flex h-[72px] items-center justify-between px-6 max-w-7xl mx-auto w-full">
         <div className="flex items-center gap-2">
-          <img src="https://res.cloudinary.com/ddnxhn442/image/upload/v1769847944/akkurate_g55qvc.png" alt="Akkurate Logo" className="h-10 w-auto" />
-          <span className="text-xl font-bold tracking-tight text-slate-900">Akkurate</span>
+          <img src="https://res.cloudinary.com/ddnxhn442/image/upload/v1769847944/akkurate_g55qvc.png" alt="Akkurate Logo" className="h-12 w-auto" />
+          <span className="text-2xl font-bold tracking-tight text-slate-900">Akkurate</span>
         </div>
 
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+        <div className="hidden md:flex items-center gap-8 text-base font-medium text-slate-600">
           <Link href="#" className="hover:text-blue-600 transition-colors">Home</Link>
           <Link href="#" className="hover:text-blue-600 transition-colors">About</Link>
 
@@ -36,7 +36,7 @@ export default function Navbar() {
           <Link href="#" className="hover:text-blue-600 transition-colors">Blog</Link>
         </div>
 
-        <button className="bg-slate-900 text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-slate-800 transition-colors">
+        <button className="bg-slate-900 text-white px-6 py-2.5 rounded-full text-base font-semibold hover:bg-slate-800 transition-colors">
           Sign Up Now
         </button>
       </div>

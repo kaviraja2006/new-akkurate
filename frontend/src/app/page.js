@@ -1,4 +1,4 @@
-import Navbar from "../components/Navbar";
+﻿import Navbar from "../components/Navbar";
 import AutoScrollingBand from "../components/AutoScrollingBand";
 import HeroSection from "../components/HeroSection";
 import LogoScrollingBand from "../components/LogoScrollingBand";
@@ -11,10 +11,12 @@ import TestimonialsSection from "../components/TestimonialsSection";
 import BlogSection from "../components/BlogSection";
 import CallToActionSection from "../components/CallToActionSection";
 import Footer from "../components/Footer";
+import ScrollToTopOnLoad from "../components/ScrollToTopOnLoad";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-white">
+      <ScrollToTopOnLoad />
       <Navbar />
       <AutoScrollingBand />
       <HeroSection />
