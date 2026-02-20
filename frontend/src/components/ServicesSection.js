@@ -116,7 +116,7 @@ export default function ServicesSection() {
                             <p className="text-xs text-blue-500 font-semibold mb-2">Excellent Performance</p>
                             <h3 className="text-2xl font-bold text-slate-900 leading-tight w-2/3">CRM Software Solution</h3>
                         </div>
-                        <div className="self-start mt-4 relative z-10">
+                        <div className="absolute top-8 right-8 z-10">
                             <button className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-900 shadow-sm group-hover:bg-blue-600 group-hover:text-white transition-colors">
                                 ↗
                             </button>
@@ -183,3 +183,6 @@ export default function ServicesSection() {
         </section>
     );
 }
+
+
+

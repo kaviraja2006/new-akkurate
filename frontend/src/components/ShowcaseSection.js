@@ -1,5 +1,6 @@
-﻿"use client";
+"use client";
 import { useEffect, useRef } from "react";
+import { FaArrowUp } from "react-icons/fa";
 
 export default function ShowcaseSection() {
     const trackRef = useRef(null);
@@ -176,7 +177,7 @@ export default function ShowcaseSection() {
                                     className={`relative aspect-square w-64 md:w-72 lg:w-80 rounded-3xl ${project.bg} overflow-hidden shadow-2xl flex items-center justify-center`}
                                 >
                                     <button className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white text-slate-900 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                                        &rarr;
+                                        <FaArrowUp className="text-sm rotate-45" />
                                     </button>
                                     <div className="absolute inset-0 opacity-30">
                                         <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-white/10 rounded-full blur-2xl" />
@@ -195,3 +196,5 @@ export default function ShowcaseSection() {
         </section>
     );
 }
+
+
